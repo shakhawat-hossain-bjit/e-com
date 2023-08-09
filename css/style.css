@@ -237,3 +237,56 @@ header {
     cursor: pointer;
     border-radius: 5px;
 }
+
+footer {
+    margin-top: 100px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+footer .left h3{
+    color: white;
+}
+
+footer .row {
+    display: flex;
+    align-items: center;
+}
+
+footer .row .left {
+    width: 50%;
+}
+
+
+footer .row .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+footer .row .left p {
+    color: white;
+}
+
+footer .row .right p {
+    color: white;
+}
+
+footer .icon-style {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+footer .social-link {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    margin-right: 15px;
+    text-decoration: none;
+}

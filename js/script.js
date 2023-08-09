@@ -1,12 +1,37 @@
+const getDataFromDb = () => {
+    const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || {};
+    return shoppingCart;
+}
+
+function addToDb(id) {
+    let shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || {};
+    if (shoppingCart[id]) {
+        alert("This product is already in the cart");
+    }
+    else {
+        shoppingCart[id] = 1;
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+    }
+}
+
+
+function removeFromDb(id) {
+    let shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
+    if (shoppingCart[id]) {
+        delete shoppingCart[id];
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+    }
+}
+
 let cart=[];
 let products=[];
 
 async function getProducts(){
     const response=await fetch(`https://dummyjson.com/products`);
     const jsonData=await response.json();
-    // console.log(jsonData.products);
     products=jsonData.products.slice(0,10);
     showProduct();
+    getCarts()
 }
 
 
@@ -14,7 +39,6 @@ function showProduct(){
     const cardConatiner =document.getElementById('product-card-container');
     cardConatiner.innerHTML="";
     products.forEach(element => {
-        
         const cardElement=document.createElement('div');
         cardElement.classList.add("card");
         cardElement.innerHTML=`
@@ -50,12 +74,29 @@ function showProduct(){
     });
 }
 
+function getCarts(){
+    let db=getDataFromDb();
+    // console.log("db ",db);
+    // console.log("products ",products);
+    cart=[];
+    const productsIds=Object.keys(db);
+    // console.log("productsIds ",productsIds)
+    productsIds.forEach(id=>{
+        products.forEach(x=>{
+            if(x.id==id){
+                // console.log(id,x);
+                cart.push(x);
+            }
+        })
+    })
+    showCart();
+}
+
+
 function showCart(){
-    console.log("cart ",cart)
     const cardConatiner =document.getElementById('cart-card-container');
     cardConatiner.innerHTML="";
     cart.forEach(element => {
-       
         const cardElement=document.createElement('div');
         cardElement.classList.add("card");
         cardElement.innerHTML=`
@@ -93,16 +134,14 @@ function showCart(){
 
 
 function addToCart(id){
-    // console.log("Add to catrt ",id);
     var index = cart.findIndex(x => x.id==id); 
-    let filteredProduct=products.find(product=>product.id===id);
     if(index===-1){
-        cart.push(filteredProduct);
+        addToDb(id);
+        getCarts();
     }
     else{
         alert("This product is already in your cart")
     }
-    showCart();
 }
 
 function removeFromCart(id){
@@ -111,14 +150,19 @@ function removeFromCart(id){
         alert("This product is already removed from your cart")
     }
     else{
-        let filteredProduct=cart.filter(product=>product.id!==id);
-        cart=filteredProduct;
+        removeFromDb(id);
+        cart=cart.filter(x=>x.id!=id)
     }
     showCart();
 }
 
 
 function orderProduct(id){
+    let ans=confirm("Are you sure to order this product");
+    // console.log(ans);
+    if(false){
+        return;
+    }
 
     let updatedProducts=products.map(product=>{
         if(product.id===id)
@@ -126,21 +170,10 @@ function orderProduct(id){
         return product;
     });
 
-    let updatedCart=cart.map(product=>{
-        // if(product.id===id)
-        //     product.stock= product.stock-1;
-        return product;
-    });
-
-    console.log("updated products ", updatedProducts)
-
     products=updatedProducts;
-    cart=updatedCart;
     showProduct();
-    showCart();
-    
+    getCarts();
 }
 
 
 getProducts();
-
