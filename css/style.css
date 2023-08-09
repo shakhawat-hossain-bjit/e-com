@@ -1,0 +1,239 @@
+
+html {
+    scroll-behavior: smooth;
+  }
+
+body {
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    margin-left: 70px;
+    margin-right: 70px;
+    scroll-behavior: smooth;
+}
+
+header {
+    height: 100vh;
+    /* background-image: url("/images/background.png"); */
+    background-color: rgb(199, 44, 199);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar-left a {
+    text-decoration: none;
+    color: black;
+    font-size: 28px;
+}
+
+.navbar-right {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+
+.navbar-right li {
+    padding: 10px 20px;
+    /* background-color: aqua; */
+}
+
+.navbar-right li a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 17px;
+}
+
+.navbar-right li:hover {
+    border-bottom: 3px solid black;
+}
+
+
+.banner {
+    display: flex;
+    /* height: 80vh; */
+    margin-top: 40px;
+    margin-left: 70px;
+}
+
+.banner-left {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-left h3 {
+    border: 5px dashed rgb(2, 2, 2);
+    font-size: 27.5px;
+    padding: 13px;
+    color: #42200B;
+    animation-name: border-animation;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+
+.banner-left h1 {
+    /* text-transform: uppercase; */
+    margin-top: 30px;
+    font-size: 50px;
+    margin-top: 90px;
+    color: #42200B;
+    padding-top: 30px;
+    font-weight: 900;
+    font-family: 'Roboto Slab', serif;
+}
+
+
+.banner-right {
+    position: relative;
+}
+
+.banner-right .img1 {
+    position: absolute;
+    left: 100px;
+    top: 30px;
+    width: 600px;
+    height: 450px;
+    /* animation: rotate-animation; */
+    animation: rotate-animation 2s infinite;
+    /* animation-duration: 2s; */
+}
+
+
+@keyframes rotate-animation {
+    40% {
+        transform: rotate(5deg);
+    }
+
+    85% {
+        transform: rotate(-5deg);
+    }
+}
+
+
+
+.products {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.products .card-container {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1.7fr));
+    grid-gap: 20px;
+}
+
+.products .card-container .card {
+    /* background-color: #42200B; */
+    padding: 10px 10px;
+    /* display: grid;
+    grid-template-rows: max-content 200px 1fr; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.products .title-sec {
+    text-align: center;
+    color: #42200B;
+}
+
+.products .title-sec h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 52px;
+}
+
+.products .title-sec p {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+.products .card-text {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.products .card-container{
+    text-align: center;
+}
+
+.products .card .img-container{
+    height: 200px;
+}
+
+.products .card .img-container img{
+    border-radius: 5px;
+}
+
+
+/* .products .card .img-container :first-child {
+    height: 230px;
+    width: 250px;
+}
+
+.products .card .img-container:first-child:hover {
+    transform: scale(1.2);
+    transition: 2s transform;
+}
+
+.products .card .img-container :last-child {
+    width: 240px;
+    height: 71px;
+} */
+
+.products{
+    /* scroll-behavior: smooth; */
+}
+
+.order-button {
+    color: white;
+    background-color: #DE1C1C;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.order-button:hover {
+    border-radius: 20px 10px 20px 10px;
+    transform: scale(1.07) rotate(1deg);
+    transition: 1s border-radius, 1s transform;
+}
+
+.add-to-cart-button {
+    color: white;
+    background-color: #0ceb08;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-from-cart-button{
+    color: white;
+    background-color: #ebeb08;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
